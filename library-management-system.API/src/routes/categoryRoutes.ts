@@ -184,10 +184,10 @@ const categoryController = new CategoryController();
  */
 
 // Routes
-router.post("/api/Category", categoryController.createCategory);
-router.get("/api/Category", categoryController.getAllCategories);
-router.get("/api/Category/:id", categoryController.getCategoryById);
-router.put("/api/Category/:id", categoryController.updateCategory);
-router.delete("/api/Category/:id", categoryController.deleteCategory);
+router.post("/api/Category", authMiddleware, categoryController.createCategory);
+router.get("/api/Category", authMiddleware, categoryController.getAllCategories);
+router.get("/api/Category/:id", authMiddleware, categoryController.getCategoryById);
+router.put("/api/Category/:id", authMiddleware, categoryController.updateCategory);
+router.delete("/api/Category/:id", authMiddleware, categoryController.deleteCategory);
 
 export default router;
