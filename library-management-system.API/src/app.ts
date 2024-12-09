@@ -78,11 +78,7 @@ export const Main = async () => {
   application.use(librarianRoutes);
   application.use(shelfRoutes);
   application.use(transactionRoutes);
-
-  logging.log("----------------------------------------");
-  logging.log("Define Routing Error");
-  logging.log("----------------------------------------");
-
+  
   logging.log("----------------------------------------");
   logging.log("Starting Server");
   logging.log("----------------------------------------");
