@@ -80,6 +80,11 @@ export const Main = async () => {
   application.use(transactionRoutes);
   
   logging.log("----------------------------------------");
+  logging.log("Define Routing Error");
+  logging.log("----------------------------------------");
+  application.use(routeNotFound);
+
+  logging.log("----------------------------------------");
   logging.log("Starting Server");
   logging.log("----------------------------------------");
   httpServer = http.createServer(application);
