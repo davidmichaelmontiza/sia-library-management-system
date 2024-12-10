@@ -4,7 +4,7 @@
   "description": "This repository contains the code for a library management system.",
   "main": "src/server.ts",
   "scripts": {
-    "start": "ts-node src/app.ts",
+    "start": "ts-node src/server.ts",
     "dev": "nodemon src/app.ts"
   },
   "author": "David Montiza, Justin Macalipay, Elizabeth Camposano",
