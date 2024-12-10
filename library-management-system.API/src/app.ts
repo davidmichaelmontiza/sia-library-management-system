@@ -83,6 +83,7 @@ export const Main = async () => {
   logging.log("Define Routing Error");
   logging.log("----------------------------------------");
   application.use(routeNotFound);
+  application.use(authRoutes);
 
   logging.log("----------------------------------------");
   logging.log("Starting Server");
