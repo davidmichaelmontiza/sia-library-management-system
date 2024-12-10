@@ -25,7 +25,7 @@ const options = {
         description: "Development server",
       },
       {
-        url: "https://sia-project-name.onrender.com", // Production server
+        url: "https://library-management-system-mjl6.onrender.com", // Production server
         description: "Production server",
       },
     ],
