@@ -19,6 +19,7 @@ import shelfRoutes from "./routes/shelfRoutes";
 import transactionRoutes from "./routes/transactionRoutes";
 import authRoutes from "./routes/authRoutes";
 import librarianRoutes from "./routes/librarianRoutes";
+import routes from "./routes/routes";
 
 export const application = express();
 export let httpServer: ReturnType<typeof http.createServer>;
@@ -82,8 +83,8 @@ export const Main = async () => {
   logging.log("----------------------------------------");
   logging.log("Define Routing Error");
   logging.log("----------------------------------------");
-  application.use(routeNotFound);
-  application.use(authRoutes);
+  application.use(routes)
+  application.use(routeNotFound)
 
   logging.log("----------------------------------------");
   logging.log("Starting Server");
