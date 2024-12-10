@@ -14,10 +14,10 @@ const bookController = new BookController();
 
 /**
  * @swagger
- * /api/books:
+ * /api/book:
  *   post:
  *     summary: Create a new book
- *     tags: [Books]
+ *     tags: [book]
  *     requestBody:
  *       required: true
  *       content:
@@ -50,7 +50,7 @@ const bookController = new BookController();
  *
  *   get:
  *     summary: Get all books
- *     tags: [Books]
+ *     tags: [book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -96,10 +96,10 @@ const bookController = new BookController();
 
 /**
  * @swagger
- * /api/books/{id}:
+ * /api/book/{id}:
  *   get:
  *     summary: Get book by ID
- *     tags: [Books]
+ *     tags: [book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -121,7 +121,7 @@ const bookController = new BookController();
  *
  *   put:
  *     summary: Update book
- *     tags: [Books]
+ *     tags: [book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -154,7 +154,7 @@ const bookController = new BookController();
  *
  *   delete:
  *     summary: Delete book
- *     tags: [Books]
+ *     tags: [book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -173,12 +173,12 @@ const bookController = new BookController();
 
 /**
  * @swagger
- * /api/books/profile:
+ * /api/book/profile:
  *   get:
  *     security:
  *       - bearerAuth: []
  *     summary: Get book profile
- *     tags: [Books]
+ *     tags: [book]
  *     responses:
  *       200:
  *         description: Book profile retrieved successfully
