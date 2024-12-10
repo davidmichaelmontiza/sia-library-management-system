@@ -77,7 +77,7 @@ const fineController = new FineController();
 
 /**
  * @swagger
- * /api/fines:
+ * /api/fine:
  *   post:
  *     summary: Create a new fine
  *     tags: [Fine]
@@ -140,7 +140,7 @@ const fineController = new FineController();
 
 /**
  * @swagger
- * /api/fines/{id}:
+ * /api/fine/{id}:
  *   get:
  *     summary: Retrieve fine details by ID
  *     tags: [Fine]

@@ -54,7 +54,7 @@ const categoryController = new CategoryController();
 
 /**
  * @swagger
- * /api/categories:
+ * /api/category:
  *   post:
  *     summary: Create a new category
  *     tags: [Category]
@@ -117,7 +117,7 @@ const categoryController = new CategoryController();
 
 /**
  * @swagger
- * /api/categories/{id}:
+ * /api/category/{id}:
  *   get:
  *     summary: Retrieve category details by ID
  *     tags: [Category]

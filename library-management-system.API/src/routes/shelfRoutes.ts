@@ -75,7 +75,7 @@ const shelfController = new ShelfController();
 
 /**
  * @swagger
- * /api/Shelf:
+ * /api/shelf:
  *   post:
  *     summary: Create a new shelf
  *     tags: [Shelf]
@@ -138,7 +138,7 @@ const shelfController = new ShelfController();
 
 /**
  * @swagger
- * /api/Shelf/{id}:
+ * /api/shelf/{id}:
  *   get:
  *     summary: Retrieve shelf details by ID
  *     tags: [Shelf]
