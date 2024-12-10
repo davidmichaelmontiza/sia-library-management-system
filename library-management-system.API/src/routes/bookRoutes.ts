@@ -23,7 +23,20 @@ const bookController = new BookController();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Book'
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               author:
+ *                 type: string
+ *               publishedDate:
+ *                 type: string
+ *                 format: date
+ *               genre:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *                 format: float
  *     responses:
  *       201:
  *         description: Book created successfully
@@ -142,6 +155,14 @@ const bookController = new BookController();
  *                 type: string
  *               author:
  *                 type: string
+ *               publishedDate:
+ *                 type: string
+ *                 format: date
+ *               genre:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *                 format: float
  *     responses:
  *       200:
  *         description: Book updated successfully
@@ -185,7 +206,6 @@ const bookController = new BookController();
  *       401:
  *         description: Unauthorized - Invalid or missing token
  */
-
 
 // Routes
 router.post("/api/book", authMiddleware, bookController.createBook); // Create a new book
