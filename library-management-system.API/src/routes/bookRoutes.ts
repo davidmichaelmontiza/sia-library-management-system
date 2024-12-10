@@ -9,7 +9,50 @@ const bookController = new BookController();
  * @swagger
  * tags:
  *   name: Book
- *   description: Book endpoints
+ *   description: Book management endpoints
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Book:
+ *       type: object
+ *       properties:
+ *         title:
+ *           type: string
+ *           example: "The Great Gatsby"
+ *         author:
+ *           type: string
+ *           example: "F. Scott Fitzgerald"
+ *         genre:
+ *           type: string
+ *           example: "Fiction"
+ *         publishedDate:
+ *           type: string
+ *           example: "1925-04-10"
+ *       required:
+ *         - title
+ *         - author
+ *
+ *     BookResponse:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           example: "645d5e5fda23c8f9b4d8f9a7"
+ *         title:
+ *           type: string
+ *           example: "The Great Gatsby"
+ *         author:
+ *           type: string
+ *           example: "F. Scott Fitzgerald"
+ *         genre:
+ *           type: string
+ *           example: "Fiction"
+ *         publishedDate:
+ *           type: string
+ *           example: "1925-04-10"
  */
 
 /**
@@ -23,20 +66,7 @@ const bookController = new BookController();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               title:
- *                 type: string
- *               author:
- *                 type: string
- *               publishedDate:
- *                 type: string
- *                 format: date
- *               genre:
- *                 type: string
- *               price:
- *                 type: number
- *                 format: float
+ *             $ref: '#/components/schemas/Book'
  *     responses:
  *       201:
  *         description: Book created successfully
@@ -46,21 +76,9 @@ const bookController = new BookController();
  *               $ref: '#/components/schemas/BookResponse'
  *       400:
  *         description: Validation error
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ValidationError'
  *       409:
  *         description: Book already exists
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Book already exists
- *
+ * 
  *   get:
  *     summary: Get all books
  *     tags: [Book]
@@ -131,7 +149,6 @@ const bookController = new BookController();
  *               $ref: '#/components/schemas/BookResponse'
  *       404:
  *         description: Book not found
- *
  *   put:
  *     summary: Update book
  *     tags: [Book]
@@ -149,20 +166,7 @@ const bookController = new BookController();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               title:
- *                 type: string
- *               author:
- *                 type: string
- *               publishedDate:
- *                 type: string
- *                 format: date
- *               genre:
- *                 type: string
- *               price:
- *                 type: number
- *                 format: float
+ *             $ref: '#/components/schemas/Book'
  *     responses:
  *       200:
  *         description: Book updated successfully
@@ -172,7 +176,6 @@ const bookController = new BookController();
  *               $ref: '#/components/schemas/BookResponse'
  *       404:
  *         description: Book not found
- *
  *   delete:
  *     summary: Delete book
  *     tags: [Book]
@@ -190,21 +193,6 @@ const bookController = new BookController();
  *         description: Book deleted successfully
  *       404:
  *         description: Book not found
- */
-
-/**
- * @swagger
- * /api/book/profile:
- *   get:
- *     security:
- *       - bearerAuth: []
- *     summary: Get book profile
- *     tags: [Book]
- *     responses:
- *       200:
- *         description: Book profile retrieved successfully
- *       401:
- *         description: Unauthorized - Invalid or missing token
  */
 
 // Routes
