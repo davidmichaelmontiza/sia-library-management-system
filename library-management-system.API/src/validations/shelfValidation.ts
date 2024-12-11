@@ -1,5 +1,66 @@
 import Joi from "joi"; // Import Joi validation library
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Shelf:
+ *       type: object
+ *       required:
+ *         - Shelf_ID
+ *         - Shelf_Name
+ *         - Category_ID
+ *         - Location
+ *       properties:
+ *         Shelf_ID:
+ *           type: number
+ *           description: Unique identifier for the shelf
+ *           example: 101
+ *         Shelf_Name:
+ *           type: string
+ *           description: Name of the shelf
+ *           example: "Fiction Section"
+ *         Category_ID:
+ *           type: number
+ *           description: Unique identifier for the category associated with the shelf
+ *           example: 202
+ *         Location:
+ *           type: string
+ *           description: Physical location of the shelf in the library
+ *           example: "Second Floor, Aisle 3"
+ *     ShelfResponse:
+ *       type: object
+ *       properties:
+ *         Shelf_ID:
+ *           type: number
+ *         Shelf_Name:
+ *           type: string
+ *         Category_ID:
+ *           type: number
+ *         Location:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *     ValidationError:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ *           description: Error message
+ *         details:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *               path:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ */
+
 // Define a validation schema for shelf data
 const shelfValidationSchema = Joi.object({
   // Shelf ID validation

@@ -8,8 +8,8 @@ const categoryController = new CategoryController();
 /**
  * @swagger
  * tags:
- *   - name: Category
- *     description: Category management API
+ *   name: Category
+ *   description: Category endpoints
  */
 
 /**
@@ -18,38 +18,16 @@ const categoryController = new CategoryController();
  *   schemas:
  *     Category:
  *       type: object
- *       properties:
- *         name:
- *           type: string
- *         description:
- *           type: string
  *       required:
- *         - name
- *     CategoryResponse:
- *       type: object
+ *         - Category_ID
+ *         - Category_Name
  *       properties:
- *         id:
+ *         Category_ID:
+ *           type: number
+ *           description: Unique identifier for the category
+ *         Category_Name:
  *           type: string
- *         name:
- *           type: string
- *         description:
- *           type: string
- *     UpdateCategoryRequest:
- *       type: object
- *       properties:
- *         name:
- *           type: string
- *         description:
- *           type: string
- *     Pagination:
- *       type: object
- *       properties:
- *         currentPage:
- *           type: integer
- *         totalPages:
- *           type: integer
- *         totalItems:
- *           type: integer
+ *           description: Name of the category
  */
 
 /**
@@ -58,8 +36,6 @@ const categoryController = new CategoryController();
  *   post:
  *     summary: Create a new category
  *     tags: [Category]
- *     security:
- *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -72,14 +48,26 @@ const categoryController = new CategoryController();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CategoryResponse'
+ *               $ref: '#/components/schemas/Category'
  *       400:
  *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ValidationError'
  *       409:
- *         description: Category already exists
+ *         description: Category ID already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Category ID already exists
  *
  *   get:
- *     summary: Retrieve a list of categories
+ *     summary: Get all categories
  *     tags: [Category]
  *     security:
  *       - bearerAuth: []
@@ -90,7 +78,7 @@ const categoryController = new CategoryController();
  *           type: integer
  *           minimum: 1
  *           default: 1
- *         description: Page number for pagination
+ *         description: Page number
  *       - in: query
  *         name: limit
  *         schema:
@@ -101,7 +89,7 @@ const categoryController = new CategoryController();
  *         description: Number of items per page
  *     responses:
  *       200:
- *         description: List of categories with pagination
+ *         description: List of categories
  *         content:
  *           application/json:
  *             schema:
@@ -110,16 +98,25 @@ const categoryController = new CategoryController();
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/CategoryResponse'
+ *                     $ref: '#/components/schemas/Category'
  *                 pagination:
- *                   $ref: '#/components/schemas/Pagination'
+ *                   type: object
+ *                   properties:
+ *                     total:
+ *                       type: integer
+ *                     pages:
+ *                       type: integer
+ *                     page:
+ *                       type: integer
+ *                     limit:
+ *                       type: integer
  */
 
 /**
  * @swagger
  * /api/category/{id}:
  *   get:
- *     summary: Retrieve category details by ID
+ *     summary: Get category by ID
  *     tags: [Category]
  *     security:
  *       - bearerAuth: []
@@ -132,16 +129,16 @@ const categoryController = new CategoryController();
  *         description: Category ID
  *     responses:
  *       200:
- *         description: Category details retrieved successfully
+ *         description: Category details
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CategoryResponse'
+ *               $ref: '#/components/schemas/Category'
  *       404:
  *         description: Category not found
  *
  *   put:
- *     summary: Update a category by ID
+ *     summary: Update category
  *     tags: [Category]
  *     security:
  *       - bearerAuth: []
@@ -157,15 +154,22 @@ const categoryController = new CategoryController();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateCategoryRequest'
+ *             type: object
+ *             properties:
+ *               Category_Name:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Category updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Category'
  *       404:
  *         description: Category not found
  *
  *   delete:
- *     summary: Delete a category by ID
+ *     summary: Delete category
  *     tags: [Category]
  *     security:
  *       - bearerAuth: []

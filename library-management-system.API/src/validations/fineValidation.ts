@@ -1,5 +1,74 @@
 import Joi from "joi"; // Import Joi validation library
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Fine:
+ *       type: object
+ *       required:
+ *         - Fine_ID
+ *         - Student_ID
+ *         - Transaction_ID
+ *         - Amount
+ *         - Status
+ *       properties:
+ *         Fine_ID:
+ *           type: number
+ *           description: Unique identifier for the fine
+ *           example: 101
+ *         Student_ID:
+ *           type: number
+ *           description: Unique identifier for the student
+ *           example: 202
+ *         Transaction_ID:
+ *           type: number
+ *           description: Unique identifier for the transaction
+ *           example: 303
+ *         Amount:
+ *           type: number
+ *           description: Fine amount
+ *           example: 50
+ *         Status:
+ *           type: string
+ *           description: Status of the fine
+ *           example: "Paid"
+ *     FineResponse:
+ *       type: object
+ *       properties:
+ *         Fine_ID:
+ *           type: number
+ *         Student_ID:
+ *           type: number
+ *         Transaction_ID:
+ *           type: number
+ *         Amount:
+ *           type: number
+ *         Status:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *     ValidationError:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ *           description: Error message
+ *         details:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *               path:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ */
+
+
 // Define a validation schema for fine data
 const fineValidationSchema = Joi.object({
   // Fine ID validation

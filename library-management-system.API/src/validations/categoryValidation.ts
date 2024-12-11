@@ -1,5 +1,56 @@
 import Joi from "joi"; // Import Joi validation library
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Category:
+ *       type: object
+ *       required:
+ *         - Category_ID
+ *         - Category_Name
+ *       properties:
+ *         Category_ID:
+ *           type: number
+ *           description: Unique identifier for the category
+ *           example: 301
+ *         Category_Name:
+ *           type: string
+ *           description: Name of the category
+ *           example: "Fiction"
+ *     CategoryResponse:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *           description: Category's unique identifier
+ *         Category_ID:
+ *           type: number
+ *         Category_Name:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *     ValidationError:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ *           description: Error message
+ *         details:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *               path:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ */
+
 // Define a validation schema for category data
 const categoryValidationSchema = Joi.object({
   // Category ID validation
