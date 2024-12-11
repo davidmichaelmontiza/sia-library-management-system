@@ -68,7 +68,7 @@ const bookController = new BookController();
  * /api/book:
  *   post:
  *     summary: Create a new book
- *     tags: [book]
+ *     tags: [Book]
  *     requestBody:
  *       required: true
  *       content:
@@ -101,7 +101,7 @@ const bookController = new BookController();
  *
  *   get:
  *     summary: Get all books
- *     tags: [book]
+ *     tags: [Book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -150,7 +150,7 @@ const bookController = new BookController();
  * /api/book/{id}:
  *   get:
  *     summary: Get book by ID
- *     tags: [book]
+ *     tags: [Book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -172,7 +172,7 @@ const bookController = new BookController();
  *
  *   put:
  *     summary: Update book
- *     tags: [book]
+ *     tags: [Book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -205,7 +205,7 @@ const bookController = new BookController();
  *
  *   delete:
  *     summary: Delete book
- *     tags: [book]
+ *     tags: [Book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
