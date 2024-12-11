@@ -83,15 +83,10 @@ export class BookController {
           .json({ message: error.details.map((err) => err.message) });
         return;
       }
-
-      // Hash the new password if it's being updated
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(payload.password, salt);
-
+      
       // Prepare update data with hashed password
       const bookData: Partial<IBook> = {
         ...payload,
-        password: hashedPassword,
       };
 
       // Update the book and get the updated document
