@@ -220,30 +220,6 @@ const fineController = new FineController();
  *         description: Fine not found
  */
 
-/**
- * @swagger
- * /api/fine/status:
- *   get:
- *     security:
- *       - bearerAuth: []
- *     summary: Get fine status
- *     tags: [Fines]
- *     responses:
- *       200:
- *         description: Fine status retrieved successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 Fine_ID:
- *                   type: number
- *                 Status:
- *                   type: string
- *       401:
- *         description: Unauthorized - Invalid or missing token
- */
-
 
 // Routes
 router.post("/api/fine", authMiddleware, fineController.createFine);
