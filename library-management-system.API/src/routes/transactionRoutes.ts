@@ -12,7 +12,7 @@ const transactionController = new TransactionController();
  * @swagger
  * tags:
  *   - name: Transaction
- *     description: Transaction management API
+ *     description: Transaction endpoints
  */
 
 /**

@@ -3,7 +3,6 @@ import { Book } from "../models/bookModel";
 import { IBook } from "../interfaces/bookInterface";
 import mongoose from "mongoose";
 import { validateBook } from "../validations/bookValidation";
-import bcrypt from "bcrypt";
 
 export class BookController {
   // Create a new book

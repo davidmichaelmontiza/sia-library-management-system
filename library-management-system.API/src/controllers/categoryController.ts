@@ -3,7 +3,6 @@ import { Category } from "../models/categoryModel";
 import { ICategory } from "../interfaces/categoryInterface";
 import mongoose from "mongoose";
 import { validateCategory } from "../validations/categoryValidation";
-import bcrypt from "bcrypt";
 
 export class CategoryController {
   // Create a new category
@@ -83,10 +82,6 @@ export class CategoryController {
           .json({ message: error.details.map((err) => err.message) });
         return;
       }
-
-      // Hash the new password if it's being updated
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(payload.password, salt);
 
       // Prepare update data with hashed password
       const categoryData: Partial<ICategory> = {

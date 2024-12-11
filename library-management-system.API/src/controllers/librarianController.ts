@@ -84,14 +84,9 @@ export class LibrarianController {
         return;
       }
 
-      // Hash the new password if it's being updated
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(payload.password, salt);
-
       // Prepare update data with hashed password
       const librarianData: Partial<ILibrarian> = {
         ...payload,
-        password: hashedPassword,
       };
 
       // Update the librarian and get the updated document

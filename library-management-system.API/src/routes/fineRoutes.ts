@@ -8,63 +8,8 @@ const fineController = new FineController();
 /**
  * @swagger
  * tags:
- *   - name: Fine
- *     description: Fine management API
- */
-
-/**
- * @swagger
- * components:
- *   schemas:
- *     Fine:
- *       type: object
- *       properties:
- *         amount:
- *           type: number
- *           format: double
- *           example: 50.75
- *         issuedTo:
- *           type: string
- *           example: User123
- *         issuedAt:
- *           type: string
- *           format: date-time
- *           example: "2023-05-10T14:48:00.000Z"
- *       required:
- *         - amount
- *         - issuedTo
- *     FineResponse:
- *       type: object
- *       properties:
- *         id:
- *           type: string
- *           example: "abc123"
- *         amount:
- *           type: number
- *           format: double
- *         issuedTo:
- *           type: string
- *         issuedAt:
- *           type: string
- *           format: date-time
- *     UpdateFineRequest:
- *       type: object
- *       properties:
- *         amount:
- *           type: number
- *           format: double
- *     Pagination:
- *       type: object
- *       properties:
- *         currentPage:
- *           type: integer
- *           example: 1
- *         totalPages:
- *           type: integer
- *           example: 5
- *         totalItems:
- *           type: integer
- *           example: 50
+ *   name: Fine
+ *   description: Fine endpoints
  */
 
 /**
@@ -73,28 +18,60 @@ const fineController = new FineController();
  *   post:
  *     summary: Create a new fine
  *     tags: [Fine]
- *     security:
- *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Fine'
+ *             type: object
+ *             required:
+ *               - Fine_ID
+ *               - Student_ID
+ *               - Transaction_ID
+ *               - Amount
+ *               - Status
+ *             properties:
+ *               Fine_ID:
+ *                 type: number
+ *                 description: Unique identifier for the fine
+ *                 example: 1001
+ *               Student_ID:
+ *                 type: number
+ *                 description: Identifier for the student associated with the fine
+ *                 example: 2001
+ *               Transaction_ID:
+ *                 type: number
+ *                 description: Identifier for the transaction related to the fine
+ *                 example: 3001
+ *               Amount:
+ *                 type: number
+ *                 description: Amount of the fine
+ *                 example: 50
+ *               Status:
+ *                 type: string
+ *                 description: Status of the fine (e.g., Paid, Unpaid)
+ *                 example: "Unpaid"
  *     responses:
  *       201:
  *         description: Fine created successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/FineResponse'
+ *               type: object
+ *               properties:
+ *                 Fine_ID:
+ *                   type: number
+ *                 Status:
+ *                   type: string
  *       400:
  *         description: Validation error
- *       409:
- *         description: Fine already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ValidationError'
  *
  *   get:
- *     summary: Retrieve a list of fines
+ *     summary: Get all fines
  *     tags: [Fine]
  *     security:
  *       - bearerAuth: []
@@ -105,7 +82,7 @@ const fineController = new FineController();
  *           type: integer
  *           minimum: 1
  *           default: 1
- *         description: Page number for pagination
+ *         description: Page number
  *       - in: query
  *         name: limit
  *         schema:
@@ -116,7 +93,7 @@ const fineController = new FineController();
  *         description: Number of items per page
  *     responses:
  *       200:
- *         description: List of fines with pagination
+ *         description: List of fines
  *         content:
  *           application/json:
  *             schema:
@@ -125,16 +102,36 @@ const fineController = new FineController();
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/FineResponse'
+ *                     type: object
+ *                     properties:
+ *                       Fine_ID:
+ *                         type: number
+ *                       Student_ID:
+ *                         type: number
+ *                       Transaction_ID:
+ *                         type: number
+ *                       Amount:
+ *                         type: number
+ *                       Status:
+ *                         type: string
  *                 pagination:
- *                   $ref: '#/components/schemas/Pagination'
+ *                   type: object
+ *                   properties:
+ *                     total:
+ *                       type: integer
+ *                     pages:
+ *                       type: integer
+ *                     page:
+ *                       type: integer
+ *                     limit:
+ *                       type: integer
  */
 
 /**
  * @swagger
  * /api/fine/{id}:
  *   get:
- *     summary: Retrieve fine details by ID
+ *     summary: Get fine by ID
  *     tags: [Fine]
  *     security:
  *       - bearerAuth: []
@@ -143,20 +140,31 @@ const fineController = new FineController();
  *         name: id
  *         required: true
  *         schema:
- *           type: string
+ *           type: number
  *         description: Fine ID
  *     responses:
  *       200:
- *         description: Fine details retrieved successfully
+ *         description: Fine details
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/FineResponse'
+ *               type: object
+ *               properties:
+ *                 Fine_ID:
+ *                   type: number
+ *                 Student_ID:
+ *                   type: number
+ *                 Transaction_ID:
+ *                   type: number
+ *                 Amount:
+ *                   type: number
+ *                 Status:
+ *                   type: string
  *       404:
  *         description: Fine not found
  *
  *   put:
- *     summary: Update a fine by ID
+ *     summary: Update fine
  *     tags: [Fine]
  *     security:
  *       - bearerAuth: []
@@ -165,22 +173,36 @@ const fineController = new FineController();
  *         name: id
  *         required: true
  *         schema:
- *           type: string
+ *           type: number
  *         description: Fine ID
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateFineRequest'
+ *             type: object
+ *             properties:
+ *               Amount:
+ *                 type: number
+ *               Status:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Fine updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 Fine_ID:
+ *                   type: number
+ *                 Status:
+ *                   type: string
  *       404:
  *         description: Fine not found
  *
  *   delete:
- *     summary: Delete a fine by ID
+ *     summary: Delete fine
  *     tags: [Fine]
  *     security:
  *       - bearerAuth: []
@@ -189,7 +211,7 @@ const fineController = new FineController();
  *         name: id
  *         required: true
  *         schema:
- *           type: string
+ *           type: number
  *         description: Fine ID
  *     responses:
  *       204:
@@ -197,6 +219,31 @@ const fineController = new FineController();
  *       404:
  *         description: Fine not found
  */
+
+/**
+ * @swagger
+ * /api/fine/status:
+ *   get:
+ *     security:
+ *       - bearerAuth: []
+ *     summary: Get fine status
+ *     tags: [Fines]
+ *     responses:
+ *       200:
+ *         description: Fine status retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 Fine_ID:
+ *                   type: number
+ *                 Status:
+ *                   type: string
+ *       401:
+ *         description: Unauthorized - Invalid or missing token
+ */
+
 
 // Routes
 router.post("/api/fine", authMiddleware, fineController.createFine);

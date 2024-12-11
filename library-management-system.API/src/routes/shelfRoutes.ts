@@ -12,7 +12,7 @@ const shelfController = new ShelfController();
  * @swagger
  * tags:
  *   - name: Shelf
- *     description: Shelf management API
+ *     description: Shelf endpoints
  */
 
 /**

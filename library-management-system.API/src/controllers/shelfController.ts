@@ -3,7 +3,7 @@ import { Shelf } from "../models/shelfModel";
 import { IShelf } from "../interfaces/shelfInterface";
 import mongoose from "mongoose";
 import { validateShelf } from "../validations/shelfValidation";
-import bcrypt from "bcrypt";
+
 
 export class ShelfController {
   // Create a new shelf
@@ -84,12 +84,8 @@ export class ShelfController {
         return;
       }
 
-      // Hash the new password if it's being updated
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(payload.password, salt);
-
       // Prepare update data with hashed password
-      const shelfData: Partial<IShelf> = { ...payload, password: hashedPassword };
+      const shelfData: Partial<IShelf> = { ...payload, };
 
       // Update the shelf and get the updated document
       const shelf: IShelf | null = await Shelf.findByIdAndUpdate(

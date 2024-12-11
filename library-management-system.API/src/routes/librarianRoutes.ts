@@ -11,8 +11,8 @@ const librarianController = new LibrarianController();
 /**
  * @swagger
  * tags:
- *   - name: Librarian
- *     description: Librarian management API
+ *    name: Librarian
+ *    description: Librarian endpoints
  */
 
 /**

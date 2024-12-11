@@ -83,12 +83,8 @@ export class FineController {
         return;
       }
 
-      // Hash the new password if it's being updated
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(payload.password, salt);
-
       // Prepare update data with hashed password
-      const fineData: Partial<IFine> = { ...payload, password: hashedPassword };
+      const fineData: Partial<IFine> = { ...payload, };
 
       // Update the fine and get the updated document
       const fine: IFine | null = await Fine.findByIdAndUpdate(

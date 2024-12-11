@@ -3,7 +3,6 @@ import { Transaction } from "../models/transactionModel";
 import { ITransaction } from "../interfaces/transactionInterface";
 import mongoose from "mongoose";
 import { validateTransaction } from "../validations/transactionValidation";
-import bcrypt from "bcrypt";
 
 export class TransactionController {
   // Create a new transaction
@@ -83,12 +82,8 @@ export class TransactionController {
         return;
       }
 
-      // Hash the new password if it's being updated
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(payload.password, salt);
-
       // Prepare update data with hashed password
-      const transactionData: Partial<ITransaction> = { ...payload, password: hashedPassword };
+      const transactionData: Partial<ITransaction> = { ...payload, };
 
       // Update the transaction and get the updated document
       const transaction: ITransaction | null = await Transaction.findByIdAndUpdate(

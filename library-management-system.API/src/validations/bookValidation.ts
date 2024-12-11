@@ -7,6 +7,8 @@ import Joi from "joi"; // Import Joi validation library
  *     Book:
  *       type: object
  *       required:
+ *         - Book_ID
+ *         - Student_ID
  *         - Title
  *         - Author
  *         - Publisher
@@ -16,53 +18,47 @@ import Joi from "joi"; // Import Joi validation library
  *         - Category_ID
  *         - Shelf_ID
  *       properties:
+ *         Book_ID:
+ *           type: number
+ *           description: Unique identifier for the book
+ *           example: 101
+ *         Student_ID:
+ *           type: number
+ *           description: Identifier for the student associated with the book
+ *           example: 1001
  *         Title:
  *           type: string
  *           description: Title of the book
- *           example: "The Great Gatsby"
+ *           example: "Introduction to Algorithms"
  *         Author:
  *           type: string
  *           description: Author of the book
- *           example: "F. Scott Fitzgerald"
+ *           example: "Thomas H. Cormen"
  *         Publisher:
  *           type: string
  *           description: Publisher of the book
- *           example: "Charles Scribner's Sons"
+ *           example: "MIT Press"
  *         Year_of_Publication:
  *           type: string
  *           format: date
  *           description: Year the book was published
- *           example: "1925-04-10"
+ *           example: "2009-07-31"
  *         Available_Copies:
  *           type: number
- *           description: Number of available copies of the book
+ *           description: Number of available copies
  *           example: 5
  *         Total_Copies:
  *           type: number
- *           description: Total number of copies of the book
+ *           description: Total number of copies
  *           example: 10
  *         Category_ID:
  *           type: number
- *           description: Unique identifier for the book category
- *           example: 301
+ *           description: Identifier for the category of the book
+ *           example: 3
  *         Shelf_ID:
  *           type: number
- *           description: Unique identifier for the shelf location
- *           example: 401
- *     BookResponse:
- *       type: object
- *       properties:
- *         id:
- *           type: string
- *           format: uuid
- *           description: Book's unique identifier
- *         Title:
- *           type: string
- *         Author:
- *           type: string
- *         createdAt:
- *           type: string
- *           format: date-time
+ *           description: Identifier for the shelf where the book is stored
+ *           example: 12
  *     ValidationError:
  *       type: object
  *       properties:
@@ -81,6 +77,7 @@ import Joi from "joi"; // Import Joi validation library
  *                 items:
  *                   type: string
  */
+
 
 
 // Define a validation schema for book data
