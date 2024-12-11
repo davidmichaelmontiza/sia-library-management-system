@@ -168,7 +168,7 @@ const transactionController = new TransactionController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Transaction ID
  *     responses:
  *       200:
@@ -190,7 +190,7 @@ const transactionController = new TransactionController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Transaction ID
  *     requestBody:
  *       required: true
@@ -214,7 +214,7 @@ const transactionController = new TransactionController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Transaction ID
  *     responses:
  *       204:

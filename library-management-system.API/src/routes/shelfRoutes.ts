@@ -138,7 +138,7 @@ const shelfController = new ShelfController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Shelf ID
  *     responses:
  *       200:
@@ -169,7 +169,7 @@ const shelfController = new ShelfController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Shelf ID
  *     requestBody:
  *       required: true
@@ -207,7 +207,7 @@ const shelfController = new ShelfController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Shelf ID
  *     responses:
  *       204:

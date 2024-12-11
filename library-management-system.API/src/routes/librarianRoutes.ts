@@ -152,7 +152,7 @@ const librarianController = new LibrarianController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Librarian ID
  *     responses:
  *       200:
@@ -174,7 +174,7 @@ const librarianController = new LibrarianController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Librarian ID
  *     requestBody:
  *       required: true
@@ -198,7 +198,7 @@ const librarianController = new LibrarianController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Librarian ID
  *     responses:
  *       204:

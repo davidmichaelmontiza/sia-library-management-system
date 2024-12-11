@@ -140,7 +140,7 @@ const fineController = new FineController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Fine ID
  *     responses:
  *       200:
@@ -173,7 +173,7 @@ const fineController = new FineController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Fine ID
  *     requestBody:
  *       required: true
@@ -211,7 +211,7 @@ const fineController = new FineController();
  *         name: id
  *         required: true
  *         schema:
- *           type: number
+ *           type: string
  *         description: Fine ID
  *     responses:
  *       204:
