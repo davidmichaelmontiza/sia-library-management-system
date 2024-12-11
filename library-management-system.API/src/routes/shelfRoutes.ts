@@ -11,66 +11,8 @@ const shelfController = new ShelfController();
 /**
  * @swagger
  * tags:
- *   - name: Shelf
- *     description: Shelf endpoints
- */
-
-/**
- * @swagger
- * components:
- *   schemas:
- *     Shelf:
- *       type: object
- *       properties:
- *         Shelf_ID:
- *           type: number
- *           example: 101
- *         Shelf_Name:
- *           type: string
- *           example: "Fiction Shelf"
- *         Category_ID:
- *           type: number
- *           example: 5
- *         Location:
- *           type: string
- *           example: "Second Floor, Section B"
- *       required:
- *         - Shelf_ID
- *         - Shelf_Name
- *         - Category_ID
- *         - Location
- *     ShelfResponse:
- *       type: object
- *       properties:
- *         Shelf_ID:
- *           type: number
- *         Shelf_Name:
- *           type: string
- *         Category_ID:
- *           type: number
- *         Location:
- *           type: string
- *     UpdateShelfRequest:
- *       type: object
- *       properties:
- *         Shelf_Name:
- *           type: string
- *         Category_ID:
- *           type: number
- *         Location:
- *           type: string
- *     Pagination:
- *       type: object
- *       properties:
- *         currentPage:
- *           type: integer
- *           example: 1
- *         totalPages:
- *           type: integer
- *           example: 5
- *         totalItems:
- *           type: integer
- *           example: 50
+ *   name: Shelf
+ *   description: Shelf endpoints
  */
 
 /**
@@ -79,28 +21,57 @@ const shelfController = new ShelfController();
  *   post:
  *     summary: Create a new shelf
  *     tags: [Shelf]
- *     security:
- *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Shelf'
+ *             type: object
+ *             required:
+ *               - Shelf_ID
+ *               - Shelf_Name
+ *               - Category_ID
+ *               - Location
+ *             properties:
+ *               Shelf_ID:
+ *                 type: number
+ *                 description: Unique identifier for the shelf
+ *                 example: 101
+ *               Shelf_Name:
+ *                 type: string
+ *                 description: Name of the shelf
+ *                 example: "Science Fiction"
+ *               Category_ID:
+ *                 type: number
+ *                 description: Identifier for the category the shelf belongs to
+ *                 example: 10
+ *               Location:
+ *                 type: string
+ *                 description: Location of the shelf
+ *                 example: "Aisle 3"
  *     responses:
  *       201:
  *         description: Shelf created successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ShelfResponse'
+ *               type: object
+ *               properties:
+ *                 Shelf_ID:
+ *                   type: number
+ *                 Shelf_Name:
+ *                   type: string
+ *                 Location:
+ *                   type: string
  *       400:
  *         description: Validation error
- *       409:
- *         description: Shelf already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ValidationError'
  *
  *   get:
- *     summary: Retrieve a list of shelves
+ *     summary: Get all shelves
  *     tags: [Shelf]
  *     security:
  *       - bearerAuth: []
@@ -111,7 +82,7 @@ const shelfController = new ShelfController();
  *           type: integer
  *           minimum: 1
  *           default: 1
- *         description: Page number for pagination
+ *         description: Page number
  *       - in: query
  *         name: limit
  *         schema:
@@ -122,7 +93,7 @@ const shelfController = new ShelfController();
  *         description: Number of items per page
  *     responses:
  *       200:
- *         description: List of shelves with pagination
+ *         description: List of shelves
  *         content:
  *           application/json:
  *             schema:
@@ -131,16 +102,34 @@ const shelfController = new ShelfController();
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/ShelfResponse'
+ *                     type: object
+ *                     properties:
+ *                       Shelf_ID:
+ *                         type: number
+ *                       Shelf_Name:
+ *                         type: string
+ *                       Category_ID:
+ *                         type: number
+ *                       Location:
+ *                         type: string
  *                 pagination:
- *                   $ref: '#/components/schemas/Pagination'
+ *                   type: object
+ *                   properties:
+ *                     total:
+ *                       type: integer
+ *                     pages:
+ *                       type: integer
+ *                     page:
+ *                       type: integer
+ *                     limit:
+ *                       type: integer
  */
 
 /**
  * @swagger
  * /api/shelf/{id}:
  *   get:
- *     summary: Retrieve shelf details by ID
+ *     summary: Get shelf by ID
  *     tags: [Shelf]
  *     security:
  *       - bearerAuth: []
@@ -153,16 +142,25 @@ const shelfController = new ShelfController();
  *         description: Shelf ID
  *     responses:
  *       200:
- *         description: Shelf details retrieved successfully
+ *         description: Shelf details
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ShelfResponse'
+ *               type: object
+ *               properties:
+ *                 Shelf_ID:
+ *                   type: number
+ *                 Shelf_Name:
+ *                   type: string
+ *                 Category_ID:
+ *                   type: number
+ *                 Location:
+ *                   type: string
  *       404:
  *         description: Shelf not found
  *
  *   put:
- *     summary: Update a shelf by ID
+ *     summary: Update shelf
  *     tags: [Shelf]
  *     security:
  *       - bearerAuth: []
@@ -178,15 +176,29 @@ const shelfController = new ShelfController();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateShelfRequest'
+ *             type: object
+ *             properties:
+ *               Shelf_Name:
+ *                 type: string
+ *               Location:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Shelf updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 Shelf_ID:
+ *                   type: number
+ *                 Shelf_Name:
+ *                   type: string
  *       404:
  *         description: Shelf not found
  *
  *   delete:
- *     summary: Delete a shelf by ID
+ *     summary: Delete shelf
  *     tags: [Shelf]
  *     security:
  *       - bearerAuth: []
@@ -203,7 +215,6 @@ const shelfController = new ShelfController();
  *       404:
  *         description: Shelf not found
  */
-
 
 // Shelf Routes
 
