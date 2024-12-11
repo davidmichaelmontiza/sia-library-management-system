@@ -7,6 +7,8 @@ import Joi from "joi"; // Import Joi validation library
  *     Book:
  *       type: object
  *       required:
+ *         - Book_ID
+ *         - Student_ID
  *         - Title
  *         - Author
  *         - Publisher
@@ -16,6 +18,14 @@ import Joi from "joi"; // Import Joi validation library
  *         - Category_ID
  *         - Shelf_ID
  *       properties:
+ *         Book_ID:
+ *           type: number
+ *           description: Unique identifier for the book
+ *           example: 101
+ *         Student_ID:
+ *           type: number
+ *           description: Unique identifier for the student
+ *           example: 202
  *         Title:
  *           type: string
  *           description: Title of the book
@@ -49,37 +59,6 @@ import Joi from "joi"; // Import Joi validation library
  *           type: number
  *           description: Unique identifier for the shelf location
  *           example: 401
- *     BookResponse:
- *       type: object
- *       properties:
- *         id:
- *           type: string
- *           format: uuid
- *           description: Book's unique identifier
- *         Title:
- *           type: string
- *         Author:
- *           type: string
- *         createdAt:
- *           type: string
- *           format: date-time
- *     ValidationError:
- *       type: object
- *       properties:
- *         message:
- *           type: string
- *           description: Error message
- *         details:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               message:
- *                 type: string
- *               path:
- *                 type: array
- *                 items:
- *                   type: string
  */
 
 
