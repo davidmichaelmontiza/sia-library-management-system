@@ -1,5 +1,66 @@
 import Joi from "joi"; // Import Joi validation library
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Book:
+ *       type: object
+ *       required:
+ *         - Book_ID
+ *         - Student_ID
+ *         - Title
+ *         - Author
+ *         - Publisher
+ *         - Year_of_Publication
+ *         - Available_Copies
+ *         - Total_Copies
+ *         - Category_ID
+ *         - Shelf_ID
+ *       properties:
+ *         Book_ID:
+ *           type: number
+ *           description: Unique identifier for the book
+ *           example: 101
+ *         Student_ID:
+ *           type: number
+ *           description: Unique identifier for the student
+ *           example: 202
+ *         Title:
+ *           type: string
+ *           description: Title of the book
+ *           example: "The Great Gatsby"
+ *         Author:
+ *           type: string
+ *           description: Author of the book
+ *           example: "F. Scott Fitzgerald"
+ *         Publisher:
+ *           type: string
+ *           description: Publisher of the book
+ *           example: "Charles Scribner's Sons"
+ *         Year_of_Publication:
+ *           type: string
+ *           format: date
+ *           description: Year the book was published
+ *           example: "1925-04-10"
+ *         Available_Copies:
+ *           type: number
+ *           description: Number of available copies of the book
+ *           example: 5
+ *         Total_Copies:
+ *           type: number
+ *           description: Total number of copies of the book
+ *           example: 10
+ *         Category_ID:
+ *           type: number
+ *           description: Unique identifier for the book category
+ *           example: 301
+ *         Shelf_ID:
+ *           type: number
+ *           description: Unique identifier for the shelf location
+ *           example: 401
+ */
+
 // Define a validation schema for book data
 const bookValidationSchema = Joi.object({
   // Book ID validation
