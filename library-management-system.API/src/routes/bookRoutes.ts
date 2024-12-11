@@ -9,7 +9,7 @@ const bookController = new BookController();
  * @swagger
  * tags:
  *   name: Book
- *   description: Book management endpoints
+ *   description: Book endpoints
  */
 
 /**
@@ -18,41 +18,49 @@ const bookController = new BookController();
  *   schemas:
  *     Book:
  *       type: object
- *       properties:
- *         title:
- *           type: string
- *           example: "The Great Gatsby"
- *         author:
- *           type: string
- *           example: "F. Scott Fitzgerald"
- *         genre:
- *           type: string
- *           example: "Fiction"
- *         publishedDate:
- *           type: string
- *           example: "1925-04-10"
  *       required:
- *         - title
- *         - author
- *
- *     BookResponse:
- *       type: object
+ *         - Book_ID
+ *         - Student_ID
+ *         - Title
+ *         - Author
+ *         - Publisher
+ *         - Year_of_Publication
+ *         - Available_Copies
+ *         - Total_Copies
+ *         - Category_ID
+ *         - Shelf_ID
  *       properties:
- *         id:
+ *         Book_ID:
+ *           type: number
+ *           description: Unique identifier for the book
+ *         Student_ID:
+ *           type: number
+ *           description: Unique identifier for the student
+ *         Title:
  *           type: string
- *           example: "645d5e5fda23c8f9b4d8f9a7"
- *         title:
+ *           description: Title of the book
+ *         Author:
  *           type: string
- *           example: "The Great Gatsby"
- *         author:
+ *           description: Author of the book
+ *         Publisher:
  *           type: string
- *           example: "F. Scott Fitzgerald"
- *         genre:
+ *           description: Publisher of the book
+ *         Year_of_Publication:
  *           type: string
- *           example: "Fiction"
- *         publishedDate:
- *           type: string
- *           example: "1925-04-10"
+ *           format: date
+ *           description: Publication year of the book
+ *         Available_Copies:
+ *           type: number
+ *           description: Number of available copies
+ *         Total_Copies:
+ *           type: number
+ *           description: Total number of copies
+ *         Category_ID:
+ *           type: number
+ *           description: Identifier for the book category
+ *         Shelf_ID:
+ *           type: number
+ *           description: Identifier for the shelf
  */
 
 /**
@@ -60,7 +68,7 @@ const bookController = new BookController();
  * /api/book:
  *   post:
  *     summary: Create a new book
- *     tags: [Book]
+ *     tags: [book]
  *     requestBody:
  *       required: true
  *       content:
@@ -73,15 +81,27 @@ const bookController = new BookController();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/BookResponse'
+ *               $ref: '#/components/schemas/Book'
  *       400:
  *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ValidationError'
  *       409:
- *         description: Book already exists
- * 
+ *         description: Book ID already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Book ID already exists
+ *
  *   get:
  *     summary: Get all books
- *     tags: [Book]
+ *     tags: [book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -111,7 +131,7 @@ const bookController = new BookController();
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/BookResponse'
+ *                     $ref: '#/components/schemas/Book'
  *                 pagination:
  *                   type: object
  *                   properties:
@@ -130,7 +150,7 @@ const bookController = new BookController();
  * /api/book/{id}:
  *   get:
  *     summary: Get book by ID
- *     tags: [Book]
+ *     tags: [book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -146,12 +166,13 @@ const bookController = new BookController();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/BookResponse'
+ *               $ref: '#/components/schemas/Book'
  *       404:
  *         description: Book not found
+ *
  *   put:
  *     summary: Update book
- *     tags: [Book]
+ *     tags: [book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -166,19 +187,25 @@ const bookController = new BookController();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Book'
+ *             type: object
+ *             properties:
+ *               Title:
+ *                 type: string
+ *               Author:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Book updated successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/BookResponse'
+ *               $ref: '#/components/schemas/Book'
  *       404:
  *         description: Book not found
+ *
  *   delete:
  *     summary: Delete book
- *     tags: [Book]
+ *     tags: [book]
  *     security:
  *       - bearerAuth: []
  *     parameters:
