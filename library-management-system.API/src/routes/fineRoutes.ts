@@ -23,9 +23,6 @@ const fineController = new FineController();
  *           type: number
  *           format: double
  *           example: 50.75
- *         reason:
- *           type: string
- *           example: Overdue book return
  *         issuedTo:
  *           type: string
  *           example: User123
@@ -35,7 +32,6 @@ const fineController = new FineController();
  *           example: "2023-05-10T14:48:00.000Z"
  *       required:
  *         - amount
- *         - reason
  *         - issuedTo
  *     FineResponse:
  *       type: object
@@ -46,8 +42,6 @@ const fineController = new FineController();
  *         amount:
  *           type: number
  *           format: double
- *         reason:
- *           type: string
  *         issuedTo:
  *           type: string
  *         issuedAt:
@@ -59,8 +53,6 @@ const fineController = new FineController();
  *         amount:
  *           type: number
  *           format: double
- *         reason:
- *           type: string
  *     Pagination:
  *       type: object
  *       properties:
